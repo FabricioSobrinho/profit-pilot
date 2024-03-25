@@ -1,0 +1,107 @@
+node_modules
+# Keep environment variables out of version control
+.env
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
+
+pids
+logs
+results
+tmp
+
+# Build
+public/css/main.css
+
+# Coverage reports
+coverage
+
+# API keys and secrets
+.env
+
+# Dependency directory
+node_modules
+bower_components
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+dist/**/*
+
+# ignore yarn.lock
+yarn.lock
+
+node_modules
+
+yarn-error.log
+declaration
+dist
+build
+tmp
+pnpm-debug.log
+.DS_Store
+
+query-engine*
+migration-engine*
+schema-engine*
+libquery_engine*
+libquery-engine*
+query_engine-windows.dll.node
+
+*tmp.db
+dist/
+
+*.tsbuildinfo
+.prisma
+.pnpm-store
+
+.vscode/*
+!.vscode/launch.json.default
+!.vscode/extensions.json
+coverage
+
+.eslintcache
+
+.pnpm-debug.log
+
+esm
+
+dev.db
+junit.xml
+/output.txt
+
+.envrc.local
+
+.idea/
+
+package.copy.json
+
+*.tgz
+
+.vscode
