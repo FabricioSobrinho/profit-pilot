@@ -12,13 +12,11 @@ export class AuthController {
     });
 
     if (!barraca) {
-        return res.json({ error: "Barraca não existe" }).status(404);
+      return res.json({ error: "Barraca não existe" }).status(404);
     }
-    
     const { id } = barraca;
-    
+
     const isValidPassword = await compare(senha, barraca.senha);
-    console.log(isValidPassword);
 
     if (!isValidPassword) {
       return res.json({ error: "Senha inválida" }).status(401);
@@ -28,6 +26,6 @@ export class AuthController {
 
     const token = sign({ id: barraca.id }, secret, { expiresIn: "8h" });
 
-    return res.json({ barraca: { id, nome}, token }).status(200);
+    return res.json({ barraca: { id, nome }, token }).status(200);
   }
 }
