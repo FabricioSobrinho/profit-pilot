@@ -105,3 +105,4 @@ package.copy.json
 *.tgz
 
 .vscode
+prisma/migrations
