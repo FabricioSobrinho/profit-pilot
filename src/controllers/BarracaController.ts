@@ -32,4 +32,11 @@ export class BarracaController {
 
     return res.json({ barraca: { id, nome } }).status(201);
   }
+
+  async getBarraca(req: Request, res: Response) {
+    const id = req.barracaId;
+
+    const barraca = await prisma.barracas.findUnique({ where: { id } });
+    return res.json({ barraca });
+  }
 }
