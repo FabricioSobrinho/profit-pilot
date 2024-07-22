@@ -13,16 +13,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Barracas {
-  id     Int      @id @default(autoincrement())
-  nome   String   @unique
-  senha  String
-  vendas Vendas[]
+model Tent {
+  id       String @id @default(uuid())
+  name     String @unique
+  password String
+  sells    Sell[]
 }
 
-model Vendas {
-  id        Int      @id @default(autoincrement())
-  valor     Float
-  barraca   Barracas @relation(fields: [barracaId], references: [id])
-  barracaId Int
+model Sell {
+  id     String @id @default(uuid())
+  value  Float
+  tent   Tent   @relation(fields: [tentId], references: [id])
+  tentId String
 }

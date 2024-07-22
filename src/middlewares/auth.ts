@@ -26,7 +26,7 @@ export function authMiddleware(
 
     const { id } = decoded as TokenPayload;
 
-    req.barracaId = id;
+    req.tentId = id;
 
     next();
   } catch (error) {

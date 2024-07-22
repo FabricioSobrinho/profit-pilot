@@ -5,18 +5,18 @@ import { sign } from "jsonwebtoken";
 
 export class AuthController {
   async login(req: Request, res: Response) {
-    const { nome, senha } = req.body;
+    const { name, password } = req.body;
 
-    const barraca = await prisma.barracas.findUnique({
-      where: { nome },
+    const tent = await prisma.tent.findUnique({
+      where: { name },
     });
 
-    if (!barraca) {
+    if (!tent) {
       return res.json({ error: "Barraca não existe" }).status(404);
     }
-    const { id } = barraca;
+    const { id } = tent;
 
-    const isValidPassword = await compare(senha, barraca.senha);
+    const isValidPassword = await compare(password, tent.password);
 
     if (!isValidPassword) {
       return res.json({ error: "Senha inválida" }).status(401);
@@ -24,8 +24,8 @@ export class AuthController {
 
     const secret = process.env.SECRET!;
 
-    const token = sign({ id: barraca.id }, secret, { expiresIn: "8h" });
+    const token = sign({ id: tent.id }, secret, { expiresIn: "8h" });
 
-    return res.json({ barraca: { id, nome }, token }).status(200);
+    return res.json({ tent: { id, name }, token }).status(200);
   }
 }

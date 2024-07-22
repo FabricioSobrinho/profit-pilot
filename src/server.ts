@@ -9,5 +9,5 @@ app.use(router)
 const port = process.env.PORT || 3000;
 
 app.listen(port, () =>
-  console.log(`Server runing 🚀!\nServer adress: http://localhost:${port}`)
+  console.log(`Servidor operando 🚀!\nEndereço do servidor: http://localhost:${port}`)
 );

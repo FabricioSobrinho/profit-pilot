@@ -1,23 +1,23 @@
 import { Router } from "express";
-import { BarracaController } from "../controllers/BarracaController";
 import { AuthController } from "../controllers/AuthController";
-import { VendasController } from "../controllers/VendasController";
+import { TentsController } from "../controllers/TentsController";
+import {SellsController} from "../controllers/SellsController"
 
 import { authMiddleware } from "../middlewares/auth";
 
 export const router = Router();
 
-const barracaController = new BarracaController();
+const tentController = new TentsController();
 const authController = new AuthController();
-const vendasController = new VendasController();
+const sellsController = new SellsController();
 
-router.get("/barracas", barracaController.index);
-router.post("/barracas", barracaController.create);
+router.get("/barracas", tentController.index);
+router.post("/barracas", tentController.create);
 
 router.post("/login", authController.login);
 
 router.use(authMiddleware);
-router.get("/barraca", barracaController.getBarraca);
+router.get("/tent", tentController.getTent)
 
-router.get("/vendas",  vendasController.Index);
-router.post("/vendas",  vendasController.novaVenda);
+router.get("/vendas",  sellsController.Index);
+router.post("/vendas",  sellsController.newSell);

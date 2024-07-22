@@ -8,12 +8,12 @@
     "dev": "nodemon --exec ts-node --transpile-only --files src/server.ts"
   },
   "dependencies": {
-    "@prisma/client": "^5.11.0",
+    "@prisma/client": "^5.16.2",
     "bcryptjs": "^2.4.3",
     "express": "^4.19.1",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3",
-    "prisma": "^5.11.0"
+    "prisma": "^5.16.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
