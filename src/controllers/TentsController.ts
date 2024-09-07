@@ -12,25 +12,29 @@ export class TentsController {
   }
 
   async create(req: Request, res: Response) {
-    const { name, password } = req.body;
-    const tentExists = await prisma.tent.findUnique({ where: { name } });
+    try {
+      const { name, password } = req.body;
+      const tentExists = await prisma.tent.findUnique({ where: { name } });
 
-    if (tentExists) {
-      return res.json({ error: "Barraca já existe" }).status(401);
+      if (tentExists) {
+        return res.json({ error: "Barraca já existe" }).status(401);
+      }
+
+      const hashPass = await hash(password, 8);
+
+      const tent = await prisma.tent.create({
+        data: {
+          name,
+          password: hashPass,
+        },
+      });
+
+      const { id } = tent;
+
+      return res.json({ tent: { id, name } }).status(201);
+    } catch (e) {
+      console.log(e);
     }
-
-    const hashPass = await hash(password, 8);
-
-    const tent = await prisma.tent.create({
-      data: {
-        name,
-        password: hashPass,
-      },
-    });
-
-    const { id } = tent;
-
-    return res.json({ tent: { id, name } }).status(201);
   }
 
   async getTent(req: Request, res: Response) {

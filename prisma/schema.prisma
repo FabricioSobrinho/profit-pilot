@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,15 +8,63 @@ datasource db {
 }
 
 model Tent {
-  id       String @id @default(uuid())
-  name     String @unique
+  id       String   @id @default(uuid())
+  name     String   @unique
   password String
   sells    Sell[]
+  dishs    Dish[]
+  drinks   Drink[]
+}
+
+model PaymentMethod {
+  id                Int    @id @default(autoincrement())
+  paymentMethodName String
+  sells             Sell[]
 }
 
 model Sell {
-  id     String @id @default(uuid())
+  id              Int           @id @default(autoincrement())
+  value           Float
+  paymentMethod   PaymentMethod @relation(fields: [paymentMethodId], references: [id])
+  paymentMethodId Int
+  tent            Tent          @relation(fields: [tentId], references: [id])
+  tentId          String
+  sellDishes      SellDish[]
+  sellDrinks      SellDrink[]
+}
+
+model Dish {
+  id     Int    @id @default(autoincrement())
+  name   String
   value  Float
   tent   Tent   @relation(fields: [tentId], references: [id])
   tentId String
+  sellDishes  SellDish[]
+}
+
+model Drink {
+  id     Int    @id @default(autoincrement())
+  name   String
+  value  Float
+  tent   Tent   @relation(fields: [tentId], references: [id])
+  tentId String
+  sellDrinks  SellDrink[]
+}
+
+model SellDish {
+  id      Int    @id @default(autoincrement())
+  sell    Sell   @relation(fields: [sellId], references: [id])
+  sellId  Int
+  dish    Dish   @relation(fields: [dishId], references: [id])
+  dishId  Int
+  quantity Int
+}
+
+model SellDrink {
+  id      Int    @id @default(autoincrement())
+  sell    Sell   @relation(fields: [sellId], references: [id])
+  sellId  Int
+  drink   Drink  @relation(fields: [drinkId], references: [id])
+  drinkId Int
+  quantity Int   
 }
