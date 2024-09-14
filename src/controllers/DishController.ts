@@ -4,7 +4,8 @@ import { prisma } from "../utils/prisma";
 export class DishController {
   async getDishs(req: Request, res: Response) {
     try {
-      const dishs = await prisma.dish.findMany();
+      const tentId = req.tentId;
+      const dishs = await prisma.dish.findMany({ where: { tentId } });
 
       res.status(200).json(dishs);
     } catch (e: any) {
@@ -16,9 +17,9 @@ export class DishController {
     try {
       const tentId = req.tentId;
 
-      const { name, value } = req.body;
+      const { name, value, dishCost } = req.body;
 
-      if (!name || value === undefined || !tentId) {
+      if (!name || value === undefined || !tentId || !dishCost) {
         return res.status(400).json({ error: "Missing required fields" });
       }
 
@@ -26,6 +27,7 @@ export class DishController {
         data: {
           name,
           value,
+          dishCost,
           tentId,
         },
       });
@@ -66,7 +68,7 @@ export class DishController {
         where: { id: Number(id) },
       });
 
-      res.status(200).json({message: "Deleted dish"});
+      res.status(200).json({ message: "Deleted dish" });
     } catch (e: any) {
       console.error("Erro ao deletar o prato:", e);
       res.status(500).json({ error: e.message });
