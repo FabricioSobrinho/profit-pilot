@@ -11,7 +11,8 @@ export class SellsController {
 
   async newSell(req: Request, res: Response) {
     try {
-      const { value, paymentMethodId, tentId, dishes, drinks } = req.body;
+      const tentId = req.tentId;
+      const { value, paymentMethodId, dishes, drinks } = req.body;
 
       if (!value || !paymentMethodId || !tentId) {
         return res.status(400).json({ error: "Missing required fields" });
@@ -23,16 +24,20 @@ export class SellsController {
           paymentMethodId,
           tentId,
           sellDishes: {
-            create: dishes.map((dish: { dishId: number; quantity: number }) => ({
-              dishId: dish.dishId,
-              quantity: dish.quantity,
-            })),
+            create: dishes.map(
+              (dish: { dishId: number; quantity: number }) => ({
+                dishId: dish.dishId,
+                quantity: dish.quantity,
+              })
+            ),
           },
           sellDrinks: {
-            create: drinks.map((drink: { drinkId: number; quantity: number }) => ({
-              drinkId: drink.drinkId,
-              quantity: drink.quantity,
-            })),
+            create: drinks.map(
+              (drink: { drinkId: number; quantity: number }) => ({
+                drinkId: drink.drinkId,
+                quantity: drink.quantity,
+              })
+            ),
           },
         },
         include: {
