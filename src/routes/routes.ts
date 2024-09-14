@@ -28,6 +28,9 @@ router.post("/sells",  sellsController.newSell);
 
 router.post("/drinks", drinksController.newDrink);
 
+router.get("/dishs", dishController.getDishs);
 router.post("/dishs", dishController.newDish);
+router.put("/dishs/:id", dishController.updateDish);
+router.delete("/dishs/:id", dishController.deleteDish);
 
 
