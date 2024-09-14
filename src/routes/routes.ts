@@ -26,6 +26,7 @@ router.get("/tent", tentController.getTent)
 router.get("/sells",  sellsController.Index);
 router.post("/sells",  sellsController.newSell);
 
+router.get("/drinks", drinksController.index);
 router.post("/drinks", drinksController.newDrink);
 
 router.get("/dishs", dishController.getDishs);
