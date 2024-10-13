@@ -13,9 +13,10 @@ export class TentsController {
 
   async create(req: Request, res: Response) {
     try {
-      const { name, password } = req.body;
+      const { name, password, passwordConfirmation } = req.body;
       const tentExists = await prisma.tent.findUnique({ where: { name } });
-
+      console.log(passwordConfirmation);
+      
       if (tentExists) {
         return res.json({ error: "Barraca já existe" }).status(401);
       }
