@@ -29,6 +29,7 @@ model Sell {
   paymentMethodId Int
   tent            Tent          @relation(fields: [tentId], references: [id])
   tentId          String
+  createdAt       DateTime      @default(now())
   sellDishes      SellDish[]
   sellDrinks      SellDrink[]
 }
