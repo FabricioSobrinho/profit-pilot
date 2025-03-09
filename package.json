@@ -5,7 +5,9 @@
   "main": "server.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec ts-node --transpile-only --files src/server.ts"
+    "dev": "nodemon --exec ts-node --transpile-only --files src/server.ts",
+    "start": "node dist/server.js",
+    "build": "prisma generate && tsc"
   },
   "dependencies": {
     "@prisma/client": "^5.19.1",

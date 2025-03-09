@@ -52,7 +52,7 @@ bower_components
 Thumbs.db
 
 # Ignore built ts files
-dist/**/*
+ 
 
 # ignore yarn.lock
 yarn.lock
@@ -61,7 +61,7 @@ node_modules
 
 yarn-error.log
 declaration
-dist
+ 
 build
 tmp
 pnpm-debug.log
@@ -75,7 +75,7 @@ libquery-engine*
 query_engine-windows.dll.node
 
 *tmp.db
-dist/
+ 
 
 *.tsbuildinfo
 .prisma
