@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node --transpile-only --files src/server.ts",
     "start": "node dist/server.js",
-    "build": "yarn install && prisma generate && tsc"
+    "build": "yarn install && prisma generate && tsc" 
   },
   "dependencies": {
     "@prisma/client": "^5.19.1",
