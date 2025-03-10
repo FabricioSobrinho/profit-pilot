@@ -5,7 +5,7 @@ import cors from "cors";
 const app = express();
 
 const corsOptions = {
-  origin: "https://milho-pay.onrender.com",
+  origin: process.env.CORS_REQUEST_ALLOWED,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, 
