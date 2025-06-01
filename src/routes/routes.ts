@@ -34,6 +34,8 @@ router.post("/sells", sellsController.newSell);
 
 router.get("/drinks", drinksController.index);
 router.post("/drinks", drinksController.newDrink);
+router.put("/drinks/:id", drinksController.updateDrink);
+router.delete("/drinks/:id", drinksController.deleteDrink);
 
 router.get("/dishs", dishController.getDishs);
 router.post("/dishs", dishController.newDish);

@@ -37,4 +37,40 @@ export class DrinksController {
       return res.status(500).json({ error: "Internal Server Error" });
     }
   }
+  async updateDrink(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const { name, value } = req.body;
+      const tentId = req.tentId;
+
+      const updatedDrink = await prisma.drink.update({
+        where: { id: Number(id) },
+        data: {
+          name,
+          value,
+          tentId,
+        },
+      });
+
+      res.status(200).json(updatedDrink);
+    } catch (e: any) {
+      console.error("Erro ao atualizar o prato:", e);
+      res.status(500).json({ error: e.message });
+    }
+  }
+
+  async deleteDrink(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+
+      await prisma.drink.delete({
+        where: { id: Number(id) },
+      });
+
+      res.status(200).json({ message: "Deleted Drink" });
+    } catch (e: any) {
+      console.error("Erro ao deletar o prato:", e);
+      res.status(500).json({ error: e.message });
+    }
+  }
 }
